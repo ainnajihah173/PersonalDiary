@@ -88,9 +88,11 @@ const updateDiary = async (req, res) => {
             return res.status(401).json({ message: 'User not authorized' });
         }
 
+        const { title, content, mood } = req.body;
+
         diary = await Diary.findByIdAndUpdate(
             req.params.id,
-            req.body,
+            { title, content, mood },
             { new: true }
         );
 
